@@ -10,9 +10,16 @@ export class AppService {
   }
   getJson() {
     return {
-      name : 'Rungaroon',
+      name: 'Rungaroon',
       lastname: 'Sanguanrit',
       age: 19,
+    };
+  }
+  getJson2() {
+    return {
+      name: 'Rungaroon2',
+      lastname: 'Sanguanrit2',
+      age: 192,
     };
   }
 }
