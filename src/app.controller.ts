@@ -10,7 +10,7 @@ export class AppController {
     return this.appService.getHello();
   }
   @Get('/showGit2')
-  getGit2(): string {
-    return this.appService.getGit2();
+  getGit(): string {
+    return this.appService.getGit();
   }
 }
