@@ -22,4 +22,9 @@ export class AppService {
       age: 192,
     };
   }
+  getJson3() {
+    return{
+      name:'Rungaroon'
+    }
+  }
 }
