@@ -11,6 +11,6 @@ export class AppController {
   }
   @Get('/showGit2')
   getGit(): string {
-    return this.appService.getGit();
+    return this.appService.getGit1();
   }
 }
