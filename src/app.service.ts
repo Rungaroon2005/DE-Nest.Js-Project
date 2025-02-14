@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
   getHello(): string {
-    return 'Hello Git & GitHub';
+    return 'Hello World';
   }
   getGit(): string {
     return 'git  and github using';
