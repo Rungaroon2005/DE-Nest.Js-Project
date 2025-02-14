@@ -5,7 +5,7 @@ export class AppService {
   getHello(): string {
     return 'Hello World';
   }
-  getGit1(): string {
+  getGit2(): string {
     return 'git  and github using';
   }
   getJson3() {
