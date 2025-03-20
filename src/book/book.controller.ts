@@ -50,9 +50,11 @@ export class BooksController {
   }
 
   // Search-REQ-04: Search for books
-  @Get('search/books')
+  // Add this new endpoint for searching with a request body
+  @Post('search/books')
   @UsePipes(new ValidationPipe({ transform: true }))
-  search(@Query() searchBookDto: SearchBookDto) {
+  searchWithBody(@Body() searchBookDto: SearchBookDto) {
+    console.log('Search body:', searchBookDto); // For debugging
     return this.booksService.search(searchBookDto);
   }
 }

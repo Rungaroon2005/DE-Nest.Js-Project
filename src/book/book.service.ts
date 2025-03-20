@@ -49,8 +49,14 @@ export class BooksService {
   // Search-REQ-04: Librarians shall search for books in the system
   async search(searchBookDto: SearchBookDto): Promise<Book[]> {
     const whereConditions = {};
+    const limit = searchBookDto.limit || 1;
 
-    // Build search criteria
+    // Add ID to search criteria
+    if (searchBookDto.id) {
+      whereConditions['id'] = searchBookDto.id;
+    }
+
+    // Existing search criteria
     if (searchBookDto.title) {
       whereConditions['title'] = { [Op.iLike]: `%${searchBookDto.title}%` };
     }
@@ -69,13 +75,15 @@ export class BooksService {
       };
     }
 
-    // If no search criteria provided, return all books
+    // If no search criteria provided, return limited number of books
     if (Object.keys(whereConditions).length === 0) {
-      return this.findAll();
+      const allBooks = await this.findAll();
+      return allBooks.slice(0, limit);
     }
 
     return this.bookModel.findAll({
       where: whereConditions,
+      limit: limit,
     });
   }
 }
