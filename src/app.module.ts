@@ -2,10 +2,9 @@ import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { AuthModule } from './auth/auth.module';
 import { AuthUser } from './auth/entities/auth.entity';
-import { Customer } from './customer/entities/customer.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { BooksService } from './Books/books.service';
-import { BooksModule } from './Books/books.module';
+import { BooksModule } from './book/book.module';
+import { Book } from './book/entities/book.entity';
 
 @Module({
   imports: [
@@ -15,14 +14,14 @@ import { BooksModule } from './Books/books.module';
     SequelizeModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => ({
+      useFactory: (configService: ConfigService) => ({
         dialect: 'postgres',
         host: configService.get<string>('DB_HOST'),
         port: Number(configService.get<string>('DB_PORT')),
         username: configService.get<string>('DB_USER'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
-        models: [Customer, AuthUser],
+        models: [Book, AuthUser],
         autoLoadModels: true,
         sync: { alter: true },
       }),
@@ -30,6 +29,6 @@ import { BooksModule } from './Books/books.module';
     AuthModule,
     BooksModule,
   ],
-  providers: [BooksService],
+  providers: [BooksModule],
 })
 export class AppModule {}
