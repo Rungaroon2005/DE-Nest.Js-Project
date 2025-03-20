@@ -1,17 +1,16 @@
 import { Injectable } from '@nestjs/common';
-
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello Git & GitHub';
+  usePostman(): string {
+    return 'We use Postman';
   }
 
-  getGit2(): string {
-    return 'git  and github using xxx';
-  }
-  getJson3() {
+  getJson() {
     return {
       name: 'Rungaroon',
+      last: 'Sanguanrit',
+      age: 20,
+      version: process.env.API_VERSION,
     };
   }
 }
